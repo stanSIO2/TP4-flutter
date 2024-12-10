@@ -118,15 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> recuperer() async {
     if (idController.text != ''){
       try {
-        mapPersonne = {
-          'nom': nomController.text,
-          'prenom': prenomController.text,
-          'age': ageController.text
-        };
-
-        personneRecuperee = Personne.fromMap(mapPersonne);
-
-        await provider.getPersonne(personneRecuperee.id!);
+        Personne? personne = await provider.getPersonne(int.parse(idController.text));
+        personneRecuperee = personne!;
+        
         //récupérer une personne avec l'id entré et mettre cette personne dans la variable appropriée
 
         setState(() {});
